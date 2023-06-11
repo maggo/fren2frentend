@@ -68,7 +68,7 @@ export function Offer({ offerer, nonce }: { offerer: Address; nonce: bigint }) {
   const isOwner = address === offerer
 
   if (!data) {
-    return "Nope."
+    return <>Nope.</>
   }
 
   const [uReceive, iReceive, status] = data as [
