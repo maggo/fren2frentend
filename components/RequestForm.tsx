@@ -6,14 +6,16 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { decodeEventLog, parseEther } from "viem"
 import {
+  useChainId,
   useContractWrite,
+  useNetwork,
   usePrepareContractWrite,
   useWaitForTransaction,
 } from "wagmi"
 import * as z from "zod"
 
 import { PonziRepABI } from "@/lib/abi"
-import { CONTRACT_ADDRESS } from "@/lib/config"
+import { ADDRESSES } from "@/lib/web3provider"
 
 import {
   Form,
@@ -34,6 +36,8 @@ const formSchema = z.object({
 
 export function RequestForm() {
   const router = useRouter()
+  const chainId = useChainId()
+  const { chain } = useNetwork()
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -44,7 +48,7 @@ export function RequestForm() {
   })
 
   const { config, isSuccess: canSubmit } = usePrepareContractWrite({
-    address: CONTRACT_ADDRESS,
+    address: ADDRESSES[chainId],
     abi: PonziRepABI,
     functionName: "createTradeOffer",
     value: parseEther(
@@ -102,7 +106,8 @@ export function RequestForm() {
                   />
                 </FormControl>
                 <FormDescription>
-                  The amount of ETH you want to sell
+                  The amount of {chain?.nativeCurrency.symbol ?? "…"} you want
+                  to sell
                 </FormDescription>
                 <FormMessage />
               </FormItem>

@@ -11,6 +11,11 @@ export const PonziRepABI = [
         name: "symbol_",
         type: "string",
       },
+      {
+        internalType: "address[]",
+        name: "fundingFathers",
+        type: "address[]",
+      },
     ],
     stateMutability: "nonpayable",
     type: "constructor",
@@ -522,6 +527,44 @@ export const PonziRepABI = [
     type: "function",
   },
   {
+    inputs: [],
+    name: "getTrades",
+    outputs: [
+      {
+        components: [
+          {
+            internalType: "address",
+            name: "offerer",
+            type: "address",
+          },
+          {
+            internalType: "uint256",
+            name: "nonce",
+            type: "uint256",
+          },
+        ],
+        internalType: "struct PonziRep.TradeOfferId[]",
+        name: "out",
+        type: "tuple[]",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "getTradesCount",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
     inputs: [
       {
         internalType: "address",
@@ -574,6 +617,19 @@ export const PonziRepABI = [
         type: "bool",
       },
     ],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "noob",
+        type: "address",
+      },
+    ],
+    name: "invite",
+    outputs: [],
     stateMutability: "nonpayable",
     type: "function",
   },
@@ -675,6 +731,25 @@ export const PonziRepABI = [
     inputs: [
       {
         internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    name: "referrers",
+    outputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
         name: "governor_",
         type: "address",
       },
@@ -745,14 +820,33 @@ export const PonziRepABI = [
   {
     inputs: [
       {
-        internalType: "address",
+        internalType: "bytes32",
         name: "",
+        type: "bytes32",
+      },
+    ],
+    name: "tradeOfferIds",
+    outputs: [
+      {
+        internalType: "address",
+        name: "offerer",
         type: "address",
       },
       {
         internalType: "uint256",
-        name: "",
+        name: "nonce",
         type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "bytes32",
+        name: "",
+        type: "bytes32",
       },
     ],
     name: "tradeOffers",
@@ -768,9 +862,9 @@ export const PonziRepABI = [
         type: "uint256",
       },
       {
-        internalType: "bool",
-        name: "isFinalised",
-        type: "bool",
+        internalType: "enum PonziRep.TradeOfferStatus",
+        name: "status",
+        type: "uint8",
       },
     ],
     stateMutability: "view",
