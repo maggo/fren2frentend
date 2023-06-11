@@ -1,8 +1,9 @@
 export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
-  name: "PonziRep",
-  description: "Peer2Ponzi",
+  name: "fren2fren",
+  description:
+    "invite-only, non-KYC P2P exchange for communities to onramp members into crypto with social points. one fren fks up - he's out and you lose your points.",
   mainNav: [
     {
       title: "Trade Offers",
@@ -11,6 +12,10 @@ export const siteConfig = {
     {
       title: "Request Trade",
       href: "/request",
+    },
+    {
+      title: "Invite",
+      href: "/invite",
     },
   ],
   links: {

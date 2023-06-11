@@ -1,34 +1,19 @@
 import { ReactNode } from "react"
-import Link from "next/link"
 
-import { Button } from "@/components/ui/button"
 import { PPBalance } from "@/components/PPBalance"
 import { TradeOffers } from "@/components/TradeOffers"
+
+import { HomepageActions } from "../components/HomepageActions"
 
 export default function IndexPage() {
   return (
     <>
       <header>
         <Title>Ethereum Bolivia</Title>
-        <p className="text-muted-foreground">123 members</p>
       </header>
       <PPBalance />
-      <header className="rounded bg-[#D34B45] p-2 text-center text-2xl font-semibold uppercase text-white">
-        <span className="font-[sans-serif]">⚠️</span>Trade Offers
-        <span className="font-[sans-serif]">⚠️</span>
-      </header>
       <TradeOffers />
-      <div className="space-y-2">
-        <Button asChild className="w-full">
-          <Link href="/request">Create Trade Offer</Link>
-        </Button>
-        <Button variant="outline" className="w-full">
-          Invite User
-        </Button>
-        <Button variant="ghost" className="w-full">
-          Found a bad actor?&nbsp;<span className="underline">vote kick</span>.
-        </Button>
-      </div>
+      <HomepageActions />
     </>
   )
 }
