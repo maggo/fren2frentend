@@ -48,8 +48,6 @@ export function TradeOffers() {
     })),
   })
 
-  if (!address) return null
-
   return (
     <div className="space-y-4">
       {data?.map(({ result }, i) => {

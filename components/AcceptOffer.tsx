@@ -32,7 +32,10 @@ import { Textarea } from "./ui/textarea"
 
 function splitAndCombineSigs(sig: string) {
   const { v, r, s } = splitSignature(sig)
-  return solidityPack(["uint8", "bytes32", "bytes32"], [v, r, s])
+  return solidityPack(
+    ["uint8", "bytes32", "bytes32"],
+    [v, r, s]
+  ) as `0x${string}`
 }
 
 export function AcceptOffer({
@@ -110,7 +113,7 @@ function FinalizeForm({ offerer, nonce }: { offerer: Address; nonce: bigint }) {
   })
 
   const {
-    data: offererSignature,
+    data: rawOffererSignature,
     signTypedData,
     isLoading,
   } = useSignTypedData({
@@ -136,6 +139,10 @@ function FinalizeForm({ offerer, nonce }: { offerer: Address; nonce: bigint }) {
   const buyerSignature = form.watch("buyerSignature") as
     | `0x${string}`
     | undefined
+
+  const offererSignature = rawOffererSignature
+    ? splitAndCombineSigs(rawOffererSignature)
+    : undefined
 
   const { config, isSuccess: canSubmit } = usePrepareContractWrite({
     address: ADDRESSES[chainId],

@@ -82,9 +82,9 @@ export function Offer({ offerer, nonce }: { offerer: Address; nonce: bigint }) {
       <Image alt="" src="/meme.png" fill />
       <div className="relative top-[12%] z-10 w-full text-center text-lg font-bold drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,1)]">
         <div>from {shortAddress(offerer)}</div>
-        <div className="-ml-10 mt-[7%] flex justify-around text-center text-2xl drop-shadow-[0_2px_2px_rgba(0,0,0,1)]">
+        <div className="mt-[7%] flex justify-around text-center text-2xl drop-shadow-[0_2px_2px_rgba(0,0,0,1)]">
           <div>{formatEther(iReceive)} BOB</div>
-          <div className="relative -left-5">
+          <div>
             {formatEther(uReceive)} {chain?.nativeCurrency.symbol}
           </div>
         </div>
